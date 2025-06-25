@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5)).then((zoh) {
+    Future.delayed(Duration(seconds: 8)).then((zoh) {
       Navigator.of(
         context,
       ).pushReplacement(CupertinoPageRoute(builder: (ctx) => HomeScreen()));
@@ -43,10 +43,10 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Container(color: ZohColors.darkColor.withOpacity(0.7)),
           DelayedDisplay(
-            delay: Duration(milliseconds: 2000),
-            fadingDuration: const Duration(milliseconds: 2000),
+            delay: Duration(milliseconds: 3000),
+            fadingDuration: const Duration(milliseconds: 3000),
             slidingCurve: Curves.easeIn,
-            slidingBeginOffset: Offset.fromDirection(-.8, 1.2),
+            slidingBeginOffset: Offset.fromDirection(-.5, 1.2),
             child: Positioned(
               left: 0,
               right: 0,

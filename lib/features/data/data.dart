@@ -16,13 +16,13 @@ List<CategoryModel> getCategories(){
   category.add(categoryModel);
   categoryModel = new CategoryModel();
 
-  categoryModel.categoryImage = ZohImages.entertainment;
-  categoryModel.categoryName = "Entertainment";
+  categoryModel.categoryImage = ZohImages.science;
+  categoryModel.categoryName = "Science";
   category.add(categoryModel);
   categoryModel = new CategoryModel();
 
-  categoryModel.categoryImage = ZohImages.science;
-  categoryModel.categoryName = "Science";
+  categoryModel.categoryImage = ZohImages.entertainment;
+  categoryModel.categoryName = "Entertainment";
   category.add(categoryModel);
   categoryModel = new CategoryModel();
 

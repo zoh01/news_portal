@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:news_portal/features/presentation/screens/home_screen/home_screen.dart';
+import 'package:news_portal/features/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:news_portal/utils/themes/themes.dart';
 
 void main () {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ZohAppTheme.lightTheme,
       darkTheme: ZohAppTheme.darkTheme,
-      home: HomeScreen(),
+      home: SplashScreen()
     );
   }
 }
