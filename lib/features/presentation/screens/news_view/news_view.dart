@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:news_portal/features/data/data.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,6 +22,8 @@ class _NewsViewState extends State<NewsView> {
   // final controller = WebViewController()
   // ..setJavaScriptMode(JavaScriptMode.disabled)
   // ..loadRequest(Uri.parse(getCategories() as String));
+
+  InAppWebViewController? webViewController;
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +63,16 @@ class _NewsViewState extends State<NewsView> {
         ),
       ),
       body: Container(
-        child: WebView(
-          initialUrl: widget.blogUrl,
-          javascriptMode: JavascriptMode.unrestricted,
-        ),
+        child: InAppWebView(
+          initialUrlRequest: URLRequest(url: WebUri(widget.blogUrl)),
+          onWebViewCreated: (controller){
+            webViewController = controller;
+          },
+          initialSettings: InAppWebViewSettings(
+            javaScriptCanOpenWindowsAutomatically: true,
+            javaScriptEnabled: true,
+          ),
+        )
       )
     );
   }
