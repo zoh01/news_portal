@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: ZohSizes.sm),
                 SizedBox(
-                  height: ZohDeviceUtils.getScreenHeight() * .32,
+                  height: ZohDeviceUtils.getScreenHeight() * .28,
                   child: ListView.builder(
                     itemCount: articles.length,
                     physics: ClampingScrollPhysics(),
@@ -99,8 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           elevation: 5,
                           borderRadius: BorderRadius.circular(15),
                           child: Container(
-                            width:
-                                ZohDeviceUtils.getScreenWidth(context) * .8,
+                            width: ZohDeviceUtils.getScreenWidth(context) * .85,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15),
@@ -108,27 +107,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
                                     child: Image(
-                                      image: NetworkImage(
-                                        articles[index].newsImage!,
-                                      ),
-                                      width:
-                                          ZohHelperFunction.screenWidth() *
-                                          .3,
+                                      image: NetworkImage(articles[index].newsImage!),
+                                      width: ZohHelperFunction.screenWidth() * .4,
                                       fit: BoxFit.cover,
-                                      height: 150,
+                                      height: 175,
                                     ),
                                   ),
                                   SizedBox(width: ZohSizes.sm),
                                   Flexible(
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           articles[index].newsTitle!,
@@ -149,32 +142,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: true,
-                                          maxLines: 3,
+                                          maxLines: 4,
                                         ),
                                         SizedBox(height: ZohSizes.xs),
                                         Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                          mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
                                             ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder:
-                                                        (context) => NewsView(
-                                                      blogUrl: articles[index].newsUrl!,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
+                                              onPressed: () {},
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
-                                                    ZohColors.primaryOpacity,
+                                                ZohColors.primaryOpacity,
                                                 side: BorderSide(
-                                                  color:
-                                                      ZohColors
-                                                          .primaryOpacity,
+                                                  color: ZohColors.primaryOpacity,
                                                 ),
                                               ),
                                               child: Icon(
@@ -208,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: ZohSizes.sm),
                 Container(
-                  height: ZohHelperFunction.screenHeight() * .20,
+                  height: ZohHelperFunction.screenHeight() * .15,
                   child: ListView.builder(
                     itemCount: categories.length,
                     scrollDirection: Axis.horizontal,
@@ -224,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Trending News',
                   style: TextStyle(
                     fontFamily: 'Roboto',
-                    fontSize: ZohSizes.md,
+                    fontSize: ZohSizes.spaceBtwZoh,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
