@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_portal/features/data/data.dart';
-import 'package:news_portal/features/data/explore_news.dart';
 import 'package:news_portal/features/data/news.dart';
 import 'package:news_portal/features/domain/models/article_models.dart';
-import 'package:news_portal/features/presentation/screens/explore/explore.dart';
 import 'package:news_portal/features/presentation/screens/home_screen/widgets/explore_container.dart';
-import 'package:news_portal/features/presentation/screens/news_view/news_view.dart';
-import 'package:news_portal/utils/constants/image_strings.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
 import 'package:news_portal/utils/device_utils/device_utilities.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
@@ -44,8 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dark = ZohHelperFunction.isDarkMode(context);
     return Scaffold(
-      backgroundColor: Color(0xE0FAF7F6),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -83,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: 'Roboto',
                     fontSize: ZohSizes.md,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black
                   ),
                 ),
                 SizedBox(height: ZohSizes.sm),
@@ -129,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold,
                                             fontSize: ZohSizes.md,
+                                            color: Colors.black
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
@@ -139,6 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: TextStyle(
                                             fontFamily: 'IBM_Plex_Sans',
                                             fontSize: ZohSizes.fontSizeSm,
+                                            color: Colors.black
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: true,
@@ -184,6 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: 'Roboto',
                     fontSize: ZohSizes.spaceBtwZoh,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black
                   ),
                 ),
                 SizedBox(height: ZohSizes.sm),
@@ -206,6 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: 'Roboto',
                     fontSize: ZohSizes.spaceBtwZoh,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black
                   ),
                 ),
                 SizedBox(
@@ -251,6 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold,
                                             fontSize: ZohSizes.md,
+                                            color: Colors.black
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
@@ -261,6 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: TextStyle(
                                             fontFamily: 'IBM_Plex_Sans',
                                             fontSize: ZohSizes.fontSizeSm,
+                                            color: Colors.black
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: true,

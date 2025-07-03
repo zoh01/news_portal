@@ -39,6 +39,7 @@ class _ExploreState extends State<Explore> {
 
   @override
   Widget build(BuildContext context) {
+    final dark = ZohHelperFunction.isDarkMode(context);
     return Scaffold(
       backgroundColor: ZohColors.primaryColor,
       appBar: AppBar(
@@ -156,6 +157,7 @@ class ExploreNewsContainer extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.bold,
                       fontSize: ZohSizes.spaceBtwZoh,
+                      color: Colors.black
                     ),
                   ),
                   SizedBox(height: ZohSizes.xs),
@@ -168,6 +170,7 @@ class ExploreNewsContainer extends StatelessWidget {
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.normal,
                       fontSize: ZohSizes.md,
+                      color: Colors.black
                     ),
                   ),
                 ],

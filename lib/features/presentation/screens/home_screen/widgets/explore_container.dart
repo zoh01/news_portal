@@ -33,7 +33,7 @@ class ExploreContainer extends StatelessWidget {
             ),
             Text(
               categoryName,
-              style: TextStyle(fontSize: ZohSizes.md, fontFamily: 'Inter'),
+              style: TextStyle(fontSize: ZohSizes.md, fontFamily: 'Inter', color: Colors.black),
             ),
           ],
         ),
