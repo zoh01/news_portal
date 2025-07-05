@@ -3,9 +3,7 @@ import 'package:news_portal/features/data/explore_news.dart';
 import 'package:news_portal/features/domain/models/explore_models.dart';
 import 'package:news_portal/features/presentation/screens/news_view/news_view.dart';
 import 'package:news_portal/utils/constants/colors.dart';
-import 'package:news_portal/utils/constants/image_strings.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
-import 'package:news_portal/utils/device_utils/device_utilities.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
 import 'package:get/get.dart';
 
@@ -40,42 +38,39 @@ class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
-    return Scaffold(
-      backgroundColor: ZohColors.primaryColor,
-      appBar: AppBar(
-        title: Text(
-          widget.name,
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
-          color: Colors.white,
-        ),
-        automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(ZohSizes.md),
-            topLeft: Radius.circular(ZohSizes.md),
-          ),
-          color: Color(0xE0FAF7F6),
-        ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: ZohSizes.md,
-              right: ZohSizes.md,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: ZohColors.primaryColor,
+          title: Text(
+            widget.name,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+              fontSize: ZohSizes.spaceBtwZoh
             ),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back_ios_new_rounded),
+            color: Colors.white,
+          ),
+          automaticallyImplyLeading: false,
+        ),
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(ZohSizes.md),
+              topLeft: Radius.circular(ZohSizes.md),
+            ),
+          ),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
@@ -84,6 +79,7 @@ class _ExploreState extends State<Explore> {
                     physics: ClampingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: categories.length,
+                    padding: EdgeInsets.only(bottom: ZohSizes.spaceBtwSections*3.2),
                     itemBuilder: (BuildContext context, int index) {
                       return ExploreNewsContainer(
                         image: categories[index].newsImage,
@@ -124,7 +120,7 @@ class ExploreNewsContainer extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: ZohSizes.md),
+        margin: EdgeInsets.only(left: ZohSizes.md, right: ZohSizes.md, top: ZohSizes.md),
         child: Material(
           elevation: 3,
           borderRadius: BorderRadius.circular(ZohSizes.md),

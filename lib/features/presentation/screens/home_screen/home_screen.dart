@@ -43,10 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final dark = ZohHelperFunction.isDarkMode(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(ZohSizes.md),
+      body: Padding(
+        padding: const EdgeInsets.only(left: ZohSizes.md, right: ZohSizes.md),
+        child: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Hottest News',
                   style: TextStyle(
                     fontFamily: 'Roboto',
-                    fontSize: ZohSizes.md,
+                    fontSize: ZohSizes.defaultSpace,
                     fontWeight: FontWeight.bold,
                     color: Colors.black
                   ),
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: ZohSizes.sm),
-                Container(
+                SizedBox(
                   height: ZohHelperFunction.screenHeight() * .15,
                   child: ListView.builder(
                     itemCount: categories.length,

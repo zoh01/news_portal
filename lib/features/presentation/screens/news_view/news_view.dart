@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:news_portal/utils/helper_function/helper_functions.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -25,6 +26,7 @@ class _NewsViewState extends State<NewsView> {
 
   @override
   Widget build(BuildContext context) {
+    final dark = ZohHelperFunction.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -34,7 +36,7 @@ class _NewsViewState extends State<NewsView> {
             Get.back();
           },
           icon: Icon(Icons.arrow_back_ios_new_rounded),
-          color: Colors.white,
+          color: Colors.black
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,

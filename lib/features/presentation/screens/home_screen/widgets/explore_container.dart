@@ -27,13 +27,13 @@ class ExploreContainer extends StatelessWidget {
               child: Image(
                 image: AssetImage(categoryImage),
                 height: 70,
-                width: ZohDeviceUtils.getScreenWidth(context) * .2,
+                width: ZohDeviceUtils.getScreenWidth(context) * .3,
                 fit: BoxFit.cover,
               ),
             ),
             Text(
               categoryName,
-              style: TextStyle(fontSize: ZohSizes.md, fontFamily: 'Inter', color: Colors.black),
+              style: TextStyle(fontSize: ZohSizes.md, fontFamily: 'Inter', color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ],
         ),
