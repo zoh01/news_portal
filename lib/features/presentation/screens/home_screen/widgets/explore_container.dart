@@ -26,7 +26,7 @@ class ExploreContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(ZohSizes.md),
               child: Image(
                 image: AssetImage(categoryImage),
-                height: 70,
+                height: ZohDeviceUtils.getScreenHeight() * .1,
                 width: ZohDeviceUtils.getScreenWidth(context) * .3,
                 fit: BoxFit.cover,
               ),

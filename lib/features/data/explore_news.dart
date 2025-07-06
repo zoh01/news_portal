@@ -9,11 +9,8 @@ class ExploreNews {
   Future<void> getCategories(String category) async {
     String url =
         "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=f884d22f286544c6b86bdefd207c5cbc";
-
     var response = await http.get(Uri.parse(url));
-
     var jsonData = jsonDecode(response.body);
-
     if (jsonData['status'] == 'ok') {
       jsonData["articles"].forEach((element) {
         if (element["urlToImage"] != null && element["description"] != null) {
