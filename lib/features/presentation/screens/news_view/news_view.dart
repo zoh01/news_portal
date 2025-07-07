@@ -17,11 +17,6 @@ class NewsView extends StatefulWidget {
 
 class _NewsViewState extends State<NewsView> {
 
-  // /// Initialize WebView Controller
-  // final controller = WebViewController()
-  // ..setJavaScriptMode(JavaScriptMode.disabled)
-  // ..loadRequest(Uri.parse(getCategories() as String));
-
   InAppWebViewController? webViewController;
 
   @override

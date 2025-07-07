@@ -1,36 +1,28 @@
-import 'package:news_portal/utils/constants/image_strings.dart';
+import 'dart:convert';
 
-import '../domain/models/slider_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:news_portal/features/domain/models/slider_model.dart';
 
-List<SliderModel> getSliders() {
-  List<SliderModel> slider = [];
+class SliderData {
+  List<SliderModel> sliders = [];
 
-  SliderModel sliderModel = new SliderModel();
+  Future<void> getSliders() async {
+    String url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=f884d22f286544c6b86bdefd207c5cbc";
 
-  sliderModel.image = ZohImages.science;
-  sliderModel.text = "Science";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
+    var response = await http.get(Uri.parse(url));
 
-  sliderModel.image = ZohImages.technology;
-  sliderModel.text = "Technology";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
+    var jsonData = jsonDecode(response.body);
 
-  sliderModel.image = ZohImages.business;
-  sliderModel.text = "Business";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
-
-  sliderModel.image = ZohImages.sport;
-  sliderModel.text = "Sport";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
-
-  sliderModel.image = ZohImages.entertainment;
-  sliderModel.text = "Entertainment";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
-
-  return slider;
+    if (jsonData['status'] == 'ok') {
+      jsonData["articles"].forEach((element) {
+        if (element["urlToImage"] != null && element["description"] != null) {
+          SliderModel sliderModel = SliderModel(
+            newsImage: element["urlToImage"],
+            newsTitle: element["title"]
+          );
+          sliders.add(sliderModel);
+        }
+      });
+    }
+  }
 }

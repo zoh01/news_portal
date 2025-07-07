@@ -1,4 +1,6 @@
 class SliderModel {
-  String? image;
-  String? text;
+  String? newsImage;
+  String? newsTitle;
+
+  SliderModel({this.newsImage, this.newsTitle});
 }

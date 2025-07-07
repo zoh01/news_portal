@@ -6,6 +6,7 @@ import 'package:news_portal/features/data/slider_data.dart';
 import 'package:news_portal/features/domain/models/article_models.dart';
 import 'package:news_portal/features/domain/models/slider_model.dart';
 import 'package:news_portal/features/presentation/screens/home_screen/widgets/explore_container.dart';
+import 'package:news_portal/features/presentation/screens/news_view/news_view.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
 import 'package:news_portal/utils/device_utils/device_utilities.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
@@ -31,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     categories = getCategories();
-    sliders = getSliders();
     getNews();
+    getSliders();
     super.initState();
   }
 
@@ -40,6 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
     News newsClass = News();
     await newsClass.getNews();
     articles = newsClass.news;
+    setState(() {
+      loading = false;
+    });
+  }
+
+  getSliders() async {
+    SliderData sliderClass = SliderData();
+    await sliderClass.getSliders();
+    sliders = sliderClass.sliders;
     setState(() {
       loading = false;
     });
@@ -107,14 +117,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 CarouselSlider.builder(
-                  itemCount: sliders.length,
+                  itemCount: 5,
                   itemBuilder: (context, index, realIndex) {
-                    String? resImage = sliders[index].image;
-                    String? resText = sliders[index].text;
+                    String? resImage = sliders[index].newsImage;
+                    String? resText = sliders[index].newsTitle;
                     return buildSlider(resImage!, index, resText!);
                   },
                   options: CarouselOptions(
-                    height: ZohDeviceUtils.getScreenHeight() * .37,
+                    height: ZohDeviceUtils.getScreenHeight() * .40,
                     autoPlay: true,
                     enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -131,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Center(
                   child: AnimatedSmoothIndicator(
                     activeIndex: activeIndex,
-                    count: sliders.length,
+                    count: 5,
                     effect: SlideEffect(
                       activeDotColor: ZohColors.primaryColor,
                       dotWidth: ZohSizes.spaceBtwZoh,
@@ -336,7 +346,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                               MainAxisAlignment.end,
                                           children: [
                                             ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder:
+                                                        (context) => NewsView(
+                                                          blogUrl:
+                                                              articles[index]
+                                                                  .newsUrl!,
+                                                        ),
+                                                  ),
+                                                );
+                                              },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
                                                     ZohColors.primaryOpacity,
@@ -393,20 +415,20 @@ class _HomeScreenState extends State<HomeScreen> {
             ClipRRect(
               borderRadius: BorderRadius.circular(ZohSizes.md),
               child: Image(
-                image: AssetImage(image),
+                image: NetworkImage(sliders[index].newsImage!),
                 fit: BoxFit.cover,
                 width: ZohDeviceUtils.getScreenWidth(context) * .8,
-                height: ZohHelperFunction.screenHeight() * .18,
+                height: ZohHelperFunction.screenHeight() * .19,
               ),
             ),
             SizedBox(height: ZohSizes.sm),
             Text(
-              'Get the latest news on different news categories Get the latest news on different news categories',
+              sliders[index].newsTitle!,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
-                fontSize: ZohSizes.iconXs,
+                fontSize: ZohSizes.md,
                 color: Colors.black,
               ),
               overflow: TextOverflow.ellipsis,
