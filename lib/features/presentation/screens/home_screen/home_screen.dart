@@ -59,6 +59,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'ZOH',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: ZohSizes.defaultSpace,
+                fontWeight: FontWeight.bold,
+                color: ZohColors.primaryColor,
+              ),
+            ),
+            Text(
+              'ARTICLES',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: ZohSizes.defaultSpace,
+                fontWeight: FontWeight.bold,
+                color: ZohColors.secondaryColor,
+              ),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(left: ZohSizes.md, right: ZohSizes.md),
@@ -67,30 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'ZOH',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: ZohSizes.defaultSpace,
-                        fontWeight: FontWeight.bold,
-                        color: ZohColors.primaryColor,
-                      ),
-                    ),
-                    Text(
-                      'NEWS',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: ZohSizes.defaultSpace,
-                        fontWeight: FontWeight.bold,
-                        color: ZohColors.secondaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: ZohSizes.md),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -106,11 +108,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        'See More',
+                        'View All',
                         style: TextStyle(
                           color: ZohColors.primaryColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.bold,
+                          fontSize: ZohSizes.iconXs
                         ),
                       ),
                     ),
@@ -124,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return buildSlider(resImage!, index, resText!);
                   },
                   options: CarouselOptions(
-                    height: ZohDeviceUtils.getScreenHeight() * .40,
+                    height: ZohDeviceUtils.getScreenHeight() * .33,
                     autoPlay: true,
                     enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -149,99 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   height: ZohDeviceUtils.getScreenHeight() * .28,
-                //   child: ListView.builder(
-                //     itemCount: articles.length,
-                //     physics: ClampingScrollPhysics(),
-                //     scrollDirection: Axis.horizontal,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Container(
-                //         margin: EdgeInsets.all(ZohSizes.sm),
-                //         child: Material(
-                //           elevation: 5,
-                //           borderRadius: BorderRadius.circular(15),
-                //           child: Container(
-                //             width: ZohDeviceUtils.getScreenWidth(context) * .85,
-                //             decoration: BoxDecoration(
-                //               color: Colors.white,
-                //               borderRadius: BorderRadius.circular(15),
-                //             ),
-                //             child: Padding(
-                //               padding: const EdgeInsets.all(8.0),
-                //               child: Row(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //                 children: [
-                //                   ClipRRect(
-                //                     borderRadius: BorderRadius.circular(15),
-                //                     child: Image(
-                //                       image: NetworkImage(articles[index].newsImage!),
-                //                       width: ZohHelperFunction.screenWidth() * .4,
-                //                       fit: BoxFit.cover,
-                //                       height: 175,
-                //                     ),
-                //                   ),
-                //                   SizedBox(width: ZohSizes.sm),
-                //                   Flexible(
-                //                     child: Column(
-                //                       crossAxisAlignment: CrossAxisAlignment.start,
-                //                       children: [
-                //                         Text(
-                //                           articles[index].newsTitle!,
-                //                           style: TextStyle(
-                //                             fontFamily: 'Roboto',
-                //                             fontWeight: FontWeight.bold,
-                //                             fontSize: ZohSizes.md,
-                //                             color: Colors.black
-                //                           ),
-                //                           overflow: TextOverflow.ellipsis,
-                //                           maxLines: 2,
-                //                           softWrap: true,
-                //                         ),
-                //                         Text(
-                //                           articles[index].newsDesc!,
-                //                           style: TextStyle(
-                //                             fontFamily: 'IBM_Plex_Sans',
-                //                             fontSize: ZohSizes.fontSizeSm,
-                //                             color: Colors.black
-                //                           ),
-                //                           overflow: TextOverflow.ellipsis,
-                //                           softWrap: true,
-                //                           maxLines: 4,
-                //                         ),
-                //                         SizedBox(height: ZohSizes.xs),
-                //                         Row(
-                //                           mainAxisAlignment: MainAxisAlignment.end,
-                //                           children: [
-                //                             ElevatedButton(
-                //                               onPressed: () {},
-                //                               style: ElevatedButton.styleFrom(
-                //                                 backgroundColor:
-                //                                 ZohColors.primaryOpacity,
-                //                                 side: BorderSide(
-                //                                   color: ZohColors.primaryOpacity,
-                //                                 ),
-                //                               ),
-                //                               child: Icon(
-                //                                 Icons.arrow_forward_ios,
-                //                                 color: Colors.white,
-                //                                 size: ZohSizes.md,
-                //                               ),
-                //                             ),
-                //                           ],
-                //                         ),
-                //                       ],
-                //                     ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
                 SizedBox(height: ZohSizes.md),
                 Text(
                   'Explore',
@@ -254,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: ZohSizes.sm),
                 SizedBox(
-                  height: ZohHelperFunction.screenHeight() * .15,
+                  height: ZohHelperFunction.screenHeight() * .135,
                   child: ListView.builder(
                     itemCount: categories.length,
                     scrollDirection: Axis.horizontal,
@@ -266,17 +176,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                Text(
-                  'Trending News',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: ZohSizes.spaceBtwZoh,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Trending News',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: ZohSizes.spaceBtwZoh,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'View All',
+                        style: TextStyle(
+                            color: ZohColors.primaryColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: ZohSizes.iconXs
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: ZohHelperFunction.screenHeight() * .55,
+                  height: ZohDeviceUtils.getScreenHeight(),
                   child: ListView.builder(
                     itemCount: articles.length,
                     scrollDirection: Axis.vertical,
@@ -308,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width:
                                           ZohHelperFunction.screenWidth() * .4,
                                       fit: BoxFit.cover,
-                                      height: 175,
+                                      height: ZohHelperFunction.screenHeight() * .20,
                                     ),
                                   ),
                                   SizedBox(width: ZohSizes.sm),
@@ -360,6 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 );
                                               },
                                               style: ElevatedButton.styleFrom(
+                                                padding: EdgeInsets.all(ZohSizes.sm),
                                                 backgroundColor:
                                                     ZohColors.primaryOpacity,
                                                 side: BorderSide(
@@ -370,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Icon(
                                                 Icons.arrow_forward_ios,
                                                 color: Colors.white,
-                                                size: ZohSizes.md,
+                                                size: ZohSizes.iconXs,
                                               ),
                                             ),
                                           ],
@@ -395,47 +323,54 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildSlider(String image, int index, String name) => Container(
-    margin: EdgeInsets.symmetric(
-      horizontal: ZohSizes.sm,
-      vertical: ZohSizes.sm,
-    ),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(ZohSizes.md),
-    ),
-    child: Material(
-      elevation: 3,
-      borderRadius: BorderRadius.circular(ZohSizes.md),
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(ZohSizes.md),
-              child: Image(
-                image: NetworkImage(sliders[index].newsImage!),
-                fit: BoxFit.cover,
-                width: ZohDeviceUtils.getScreenWidth(context) * .8,
-                height: ZohHelperFunction.screenHeight() * .19,
+  Widget buildSlider(String image, int index, String name) => GestureDetector(
+    onTap: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => NewsView(blogUrl: sliders[index].newsUrl!)));
+    },
+    child: Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: ZohSizes.sm,
+        vertical: ZohSizes.sm,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(ZohSizes.md),
+      ),
+      child: Material(
+        elevation: 3,
+        borderRadius: BorderRadius.circular(ZohSizes.md),
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(ZohSizes.md),
+                child: Image(
+                  image: NetworkImage(sliders[index].newsImage!),
+                  fit: BoxFit.cover,
+                  width: ZohDeviceUtils.getScreenWidth(context) * .8,
+                  height: ZohHelperFunction.screenHeight() * .17,
+                ),
               ),
-            ),
-            SizedBox(height: ZohSizes.sm),
-            Text(
-              sliders[index].newsTitle!,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.bold,
-                fontSize: ZohSizes.md,
-                color: Colors.black,
+              SizedBox(height: ZohSizes.sm,),
+              Text(
+                sliders[index].newsTitle!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.bold,
+                  fontSize: ZohSizes.md,
+                  color: Colors.black,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                softWrap: true,
               ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              softWrap: true,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),
