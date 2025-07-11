@@ -7,7 +7,8 @@ class SliderData {
   List<SliderModel> sliders = [];
 
   Future<void> getSliders() async {
-    String url = "https://newsapi.org/v2/everything?q=politics&from=$DateTime&to=$DateTime&sortBy=popularity&apiKey=f884d22f286544c6b86bdefd207c5cbc";
+    String url =
+        "https://newsapi.org/v2/everything?q=tesla&from=2025-06-11&sortBy=publishedAt&apiKey=f884d22f286544c6b86bdefd207c5cbc";
 
     var response = await http.get(Uri.parse(url));
 
@@ -19,7 +20,8 @@ class SliderData {
           SliderModel sliderModel = SliderModel(
             newsImage: element["urlToImage"],
             newsTitle: element["title"],
-            newsUrl: element["url"]
+            newsUrl: element["url"],
+            newsDesc: element["description"],
           );
           sliders.add(sliderModel);
         }

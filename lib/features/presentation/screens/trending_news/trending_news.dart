@@ -27,7 +27,7 @@ class TrendingNews extends StatelessWidget {
           baseColor: Colors.white,
           highlightColor: Colors.transparent,
           child: ListView.builder(
-            itemCount: articles.length,
+            itemCount: 10,
             scrollDirection: Axis.vertical,
             physics: ClampingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
@@ -141,7 +141,7 @@ class TrendingNews extends StatelessWidget {
             },
           )
       ) : ListView.builder(
-        itemCount: articles.length,
+        itemCount: 10,
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {

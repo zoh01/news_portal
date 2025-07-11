@@ -8,6 +8,8 @@ import 'package:news_portal/features/domain/models/slider_model.dart';
 import 'package:news_portal/features/presentation/screens/explore/widgets/explore_container.dart';
 import 'package:news_portal/features/presentation/screens/home_screen/widgets/text.dart';
 import 'package:news_portal/features/presentation/screens/news_view/news_view.dart';
+import 'package:news_portal/features/presentation/screens/slider/widgets/slider_viewall.dart';
+import 'package:news_portal/features/presentation/screens/trending_news/widgets/trending_viewall.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
 import 'package:news_portal/utils/device_utils/device_utilities.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
@@ -125,27 +127,42 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextWidget(title: 'Hottest News', onTap: () {},),
+                TextWidget(title: 'Hottest News', onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SliderViewAll()));
+                }),
                 CarouselSlider.builder(
                   itemCount: 5,
                   itemBuilder: (context, index, realIndex) {
                     String? resImage = sliders[index].newsImage;
                     String? resText = sliders[index].newsTitle;
-                    return carouselShimmer ? Shimmer.fromColors(
-                      baseColor: Colors.white,
-                      highlightColor: Colors.transparent,
-                      child: SliderContainer(context: context, sliders: sliders, image: resImage!, index: index, name: resText!),
-                    ) : SliderContainer(context: context, sliders: sliders, image: resImage!, index: index, name: resText!);
+                    return carouselShimmer
+                        ? Shimmer.fromColors(
+                          baseColor: Colors.white,
+                          highlightColor: Colors.transparent,
+                          child: SliderContainer(
+                            context: context,
+                            sliders: sliders,
+                            image: resImage!,
+                            index: index,
+                            name: resText!,
+                          ),
+                        )
+                        : SliderContainer(
+                          context: context,
+                          sliders: sliders,
+                          image: resImage!,
+                          index: index,
+                          name: resText!,
+                        );
                   },
                   options: CarouselOptions(
                     height: ZohDeviceUtils.getScreenHeight() * .33,
                     autoPlay: true,
                     enlargeCenterPage: true,
-                    initialPage: activeIndex,
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
                     onPageChanged: (index, reason) {
                       setState(() {
-                        activeIndex = activeIndex;
+                        activeIndex = index;
                       });
                     },
                   ),
@@ -175,11 +192,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(height: ZohSizes.sm),
+
                 /// Explore Categories
                 ExploreCategories(categories: categories, shimmer: shimmer),
-                TextWidget(title: 'Trending News', onTap: (){},),
+
+                TextWidget(title: 'Trending News', onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TrendingViewAll()));
+                }),
+
                 /// Trending News
-                TrendingNews(trendingShimmer: trendingShimmer, articles: articles),
+                TrendingNews(
+                  trendingShimmer: trendingShimmer,
+                  articles: articles,
+                ),
               ],
             ),
           ),

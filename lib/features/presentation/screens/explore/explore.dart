@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_portal/features/data/explore_news.dart';
 import 'package:news_portal/features/domain/models/explore_models.dart';
 import 'package:news_portal/features/presentation/screens/explore/widgets/explore_news_container.dart';
-import 'package:news_portal/features/presentation/screens/news_view/news_view.dart';
 import 'package:news_portal/utils/constants/colors.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
