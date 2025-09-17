@@ -21,8 +21,8 @@ class _TrendingViewAllState extends State<TrendingViewAll> {
 
   @override
   void initState() {
-    getNews();
     super.initState();
+    getNews();
   }
 
   getNews() async {
@@ -36,58 +36,70 @@ class _TrendingViewAllState extends State<TrendingViewAll> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: ZohColors.primaryColor,
-        title: Text(
-          "Trending News",
-          style: TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: ZohColors.primaryColor,
+          title: const Text(
+            "Trending News",
+            style: TextStyle(
               color: Colors.white,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.bold,
-              fontSize: ZohSizes.spaceBtwZoh
+              fontSize: ZohSizes.spaceBtwZoh,
+            ),
           ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
-          color: Colors.white,
-        ),
-        automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(ZohSizes.md),
-            topLeft: Radius.circular(ZohSizes.md),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            color: Colors.white,
           ),
+          automaticallyImplyLeading: false,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: ZohHelperFunction.screenHeight(),
-                child: ListView.builder(
-                  physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemCount: articles.length,
-                  padding: EdgeInsets.only(bottom: ZohSizes.spaceBtwSections*3.2),
-                  itemBuilder: (BuildContext context, int index) {
-                    return ExploreNewsContainer(
-                      image: articles[index].newsImage,
-                      title: articles[index].newsTitle,
-                      desc: articles[index].newsDesc,
-                      url: articles[index].newsUrl,
-                    );
-                  },
+        body: Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(ZohSizes.md),
+              topLeft: Radius.circular(ZohSizes.md),
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: ZohHelperFunction.screenHeight(),
+                  child: ListView.builder(
+                    physics: const ClampingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    padding: const EdgeInsets.only(
+                      bottom: ZohSizes.spaceBtwSections * 3.2,
+                    ),
+                    // 🔹 If still loading → show 5 shimmer placeholders
+                    itemCount: loading ? 5 : articles.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (loading) {
+                        return const ExploreNewsContainer(
+                          loading: true, // shimmer placeholder
+                        );
+                      } else {
+                        return ExploreNewsContainer(
+                          image: articles[index].newsImage,
+                          title: articles[index].newsTitle,
+                          desc: articles[index].newsDesc,
+                          url: articles[index].newsUrl,
+                          loading: false, // real content
+                        );
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

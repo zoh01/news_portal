@@ -42,11 +42,11 @@ class _ExploreState extends State<Explore> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: ZohColors.primaryColor,
+          backgroundColor: Colors.white30,
           title: Text(
             widget.name,
             style: TextStyle(
-              color: Colors.white,
+              color: ZohColors.black,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.bold,
               fontSize: ZohSizes.spaceBtwZoh
@@ -58,7 +58,7 @@ class _ExploreState extends State<Explore> {
               Get.back();
             },
             icon: Icon(Icons.arrow_back_ios_new_rounded),
-            color: Colors.white,
+            color: ZohColors.black,
           ),
           automaticallyImplyLeading: false,
         ),

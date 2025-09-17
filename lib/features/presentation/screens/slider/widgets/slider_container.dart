@@ -6,7 +6,6 @@ import '../../../../../utils/helper_function/helper_functions.dart';
 import '../../../../domain/models/slider_model.dart';
 import '../../news_view/news_view.dart';
 
-
 class SliderContainer extends StatelessWidget {
   const SliderContainer({
     super.key,
