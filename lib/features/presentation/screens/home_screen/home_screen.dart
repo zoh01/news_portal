@@ -123,107 +123,104 @@ class _HomeScreenState extends State<HomeScreen> {
               await getNews();
               await getSliders();
             },
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// 🔥 HOTTEST NEWS
-                  TextWidget(
-                    title: 'Hottest News',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SliderViewAll()),
+            child: ListView(
+              physics: AlwaysScrollableScrollPhysics(),
+              children: [
+                /// HOTTEST NEWS
+                TextWidget(
+                  title: 'Hottest News',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SliderViewAll()),
+                    );
+                  },
+                ),
+
+                /// SLIDER
+                if (sliderLoading)
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      height: ZohHelperFunction.screenHeight() * .35,
+                      width: double.infinity,
+                      color: Colors.grey[300],
+                    ),
+                  )
+                else if (sliders.isNotEmpty)
+                  CarouselSlider.builder(
+                    itemCount: min(sliders.length, 5),
+                    itemBuilder: (context, index, realIndex) {
+                      final resImage = sliders[index].newsImage ?? '';
+                      final resText  = sliders[index].newsTitle ?? 'Untitled';
+                      return SliderContainer(
+                        context: context,
+                        sliders: sliders,
+                        image: resImage,
+                        index: index,
+                        name: resText,
                       );
                     },
-                  ),
-
-                  /// 📰 SLIDER
-                  if (sliderLoading)
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        width: double.infinity,
-                        color: Colors.grey[300],
-                      ),
-                    )
-                  else if (sliders.isNotEmpty)
-                    CarouselSlider.builder(
-                      itemCount: min(sliders.length, 5),
-                      itemBuilder: (context, index, realIndex) {
-                        final resImage = sliders[index].newsImage ?? '';
-                        final resText  = sliders[index].newsTitle ?? 'Untitled';
-                        return SliderContainer(
-                          context: context,
-                          sliders: sliders,
-                          image: resImage,
-                          index: index,
-                          name: resText,
-                        );
+                    options: CarouselOptions(
+                      height: ZohHelperFunction.screenHeight() * .35,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      onPageChanged: (index, reason) {
+                        setState(() => activeIndex = index);
                       },
-                      options: CarouselOptions(
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        enlargeStrategy: CenterPageEnlargeStrategy.height,
-                        onPageChanged: (index, reason) {
-                          setState(() => activeIndex = index);
-                        },
+                    ),
+                  ),
+
+                const SizedBox(height: ZohSizes.sm),
+
+                /// INDICATOR
+                if (sliders.isNotEmpty)
+                  Center(
+                    child: AnimatedSmoothIndicator(
+                      activeIndex: activeIndex,
+                      count: sliders.length > 5 ? 5 : sliders.length,
+                      effect: SlideEffect(
+                        activeDotColor: ZohColors.primaryColor,
+                        dotWidth: ZohSizes.spaceBtwZoh,
+                        dotHeight: ZohSizes.sm,
                       ),
                     ),
-
-                  const SizedBox(height: ZohSizes.sm),
-
-                  /// 📍 INDICATOR
-                  if (sliders.isNotEmpty)
-                    Center(
-                      child: AnimatedSmoothIndicator(
-                        activeIndex: activeIndex,
-                        count: sliders.length > 5 ? 5 : sliders.length,
-                        effect: SlideEffect(
-                          activeDotColor: ZohColors.primaryColor,
-                          dotWidth: ZohSizes.spaceBtwZoh,
-                          dotHeight: ZohSizes.sm,
-                        ),
-                      ),
-                    ),
-
-                  const SizedBox(height: ZohSizes.md),
-
-                  /// 🔎 EXPLORE
-                  Text(
-                    'Explore',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: ZohSizes.spaceBtwZoh,
-                      fontWeight: FontWeight.bold,
-                      color: dark ? Colors.white : Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: ZohSizes.sm),
-
-                  ExploreCategories(categories: categories, shimmer: shimmer),
-
-                  /// 📢 TRENDING NEWS
-                  TextWidget(
-                    title: 'Trending News',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TrendingViewAll()),
-                      );
-                    },
                   ),
 
-                  TrendingNews(
-                    trendingShimmer: newsLoading,
-                    articles: articles,
+                const SizedBox(height: ZohSizes.md),
+
+                /// EXPLORE
+                Text(
+                  'Explore',
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontSize: ZohSizes.spaceBtwZoh,
+                    fontWeight: FontWeight.bold,
+                    color: dark ? Colors.white : Colors.black,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: ZohSizes.sm),
+
+                ExploreCategories(categories: categories, shimmer: shimmer),
+
+                /// TRENDING NEWS
+                TextWidget(
+                  title: 'Trending News',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const TrendingViewAll()),
+                    );
+                  },
+                ),
+
+                TrendingNews(
+                  trendingShimmer: newsLoading,
+                  articles: articles,
+                ),
+              ],
             ),
           ),
         ),

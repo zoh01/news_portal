@@ -12,7 +12,7 @@ class ExploreNewsContainer extends StatelessWidget {
     this.title,
     this.desc,
     this.url,
-    this.loading = false, // 🔹 new flag
+    this.loading = false, // new flag
   });
 
   final String? image, title, desc, url;
@@ -21,10 +21,10 @@ class ExploreNewsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      /// 🔹 Show shimmer skeleton when loading
+      /// Show shimmer skeleton when loading
       return _buildShimmer(context);
     } else {
-      /// 🔹 Show real news card when data is available
+      /// Show real news card when data is available
       return _buildNewsCard(context);
     }
   }
@@ -106,7 +106,7 @@ class ExploreNewsContainer extends StatelessWidget {
     );
   }
 
-  /// 🔹 Shimmer skeleton layout
+  /// Shimmer skeleton layout
   Widget _buildShimmer(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
@@ -131,7 +131,7 @@ class ExploreNewsContainer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// 🔘 Image placeholder
+                  /// Image placeholder
                   Container(
                     width: double.infinity,
                     height: ZohHelperFunction.screenHeight() * .3,
@@ -142,7 +142,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   ),
                   const SizedBox(height: ZohSizes.sm),
 
-                  /// 🔘 Title placeholder
+                  /// Title placeholder
                   Container(
                     height: 16,
                     width: double.infinity,
@@ -150,7 +150,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  /// 🔘 Small line placeholder
+                  /// Small line placeholder
                   Container(
                     height: 14,
                     width: ZohHelperFunction.screenWidth() * 0.6,
@@ -158,7 +158,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  /// 🔘 Another line placeholder
+                  /// Another line placeholder
                   Container(
                     height: 14,
                     width: ZohHelperFunction.screenWidth() * 0.4,

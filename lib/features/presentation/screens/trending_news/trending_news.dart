@@ -20,24 +20,21 @@ class TrendingNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: ZohDeviceUtils.getScreenHeight(),
-      child: trendingShimmer
-          ? _buildShimmerList(context)
-          : _buildNewsList(context),
-    );
+    return trendingShimmer
+        ? _buildShimmerList(context)
+        : _buildNewsList(context);
   }
 
   /// 🔹 Shimmer Skeleton Layout
   Widget _buildShimmerList(BuildContext context) {
-    // Match shimmer count with article list, max 10, fallback 5
     final shimmerCount = articles.isEmpty
-        ? 5
+        ? 10
         : (articles.length > 10 ? 10 : articles.length);
 
     return ListView.builder(
       itemCount: shimmerCount,
-      physics: const ClampingScrollPhysics(),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.all(ZohSizes.sm),
@@ -132,7 +129,8 @@ class TrendingNews extends StatelessWidget {
 
     return ListView.builder(
       itemCount: itemCount,
-      physics: const ClampingScrollPhysics(),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         return Container(
           margin: const EdgeInsets.all(ZohSizes.sm),
