@@ -10,12 +10,14 @@ import 'package:news_portal/features/domain/models/slider_model.dart';
 import 'package:news_portal/features/presentation/screens/home_screen/widgets/text.dart';
 import 'package:news_portal/features/presentation/screens/slider/widgets/slider_viewall.dart';
 import 'package:news_portal/features/presentation/screens/trending_news/widgets/trending_viewall.dart';
+import 'package:news_portal/utils/constants/image_strings.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
 import 'package:news_portal/utils/helper_function/helper_functions.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/device_utils/device_utilities.dart';
 import '../../../domain/models/category_models.dart';
 import '../explore/widgets/explore_categories.dart';
 import '../slider/widgets/slider_container.dart';
@@ -87,37 +89,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'ZOH',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: ZohSizes.defaultSpace,
-                fontWeight: FontWeight.bold,
-                color: ZohColors.primaryColor,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'ZOH',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: ZohSizes.defaultSpace,
+                  fontWeight: FontWeight.bold,
+                  color: ZohColors.primaryColor,
+                ),
               ),
-            ),
-            Text(
-              'ARTICLES',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: ZohSizes.defaultSpace,
-                fontWeight: FontWeight.bold,
-                color: ZohColors.secondaryColor,
+              Text(
+                'ARTICLES',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: ZohSizes.defaultSpace,
+                  fontWeight: FontWeight.bold,
+                  color: ZohColors.secondaryColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+          backgroundColor: Colors.black26,
+          elevation: 4,
         ),
-      ),
-      backgroundColor: dark ? Colors.black : Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ZohSizes.md),
-        child: SafeArea(
+        backgroundColor: dark ? Colors.black : Colors.white,
+        body: Padding(
+          padding: const EdgeInsets.only(bottom: ZohSizes.sm,),
           child: RefreshIndicator(
             onRefresh: () async {
               await getNews();
@@ -127,25 +131,77 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: AlwaysScrollableScrollPhysics(),
               children: [
                 /// HOTTEST NEWS
-                TextWidget(
-                  title: 'Hottest News',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SliderViewAll()),
-                    );
-                  },
+                Padding(
+                  padding: const EdgeInsets.only(top: ZohSizes.sm),
+                  child: TextWidget(
+                    title: 'Hottest News',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SliderViewAll(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
 
                 /// SLIDER
                 if (sliderLoading)
                   Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
+                    baseColor: Colors.white,
+                    highlightColor: Colors.transparent,
                     child: Container(
-                      height: ZohHelperFunction.screenHeight() * .35,
-                      width: double.infinity,
-                      color: Colors.grey[300],
+                      margin: EdgeInsets.symmetric(
+                        horizontal: ZohSizes.sm,
+                        vertical: ZohSizes.sm,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(ZohSizes.md),
+                      ),
+                      child: Material(
+                        elevation: 3,
+                        borderRadius: BorderRadius.circular(ZohSizes.md),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  ZohSizes.md,
+                                ),
+                                child: Image(
+                                  image: AssetImage(ZohImages.reportNews),
+                                  fit: BoxFit.cover,
+                                  width:
+                                      ZohDeviceUtils.getScreenWidth(context) *
+                                      .8,
+                                  height:
+                                      ZohHelperFunction.screenHeight() * .17,
+                                ),
+                              ),
+                              SizedBox(height: ZohSizes.sm),
+                              Text(
+                                "sliders[index].newsTitle!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: ZohSizes.md,
+                                  color: Colors.black,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                softWrap: true,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 else if (sliders.isNotEmpty)
@@ -153,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: min(sliders.length, 5),
                     itemBuilder: (context, index, realIndex) {
                       final resImage = sliders[index].newsImage ?? '';
-                      final resText  = sliders[index].newsTitle ?? 'Untitled';
+                      final resText = sliders[index].newsTitle ?? 'Untitled';
                       return SliderContainer(
                         context: context,
                         sliders: sliders,
@@ -192,13 +248,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: ZohSizes.md),
 
                 /// EXPLORE
-                Text(
-                  'Explore',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: ZohSizes.spaceBtwZoh,
-                    fontWeight: FontWeight.bold,
-                    color: dark ? Colors.white : Colors.black,
+                Padding(
+                  padding: const EdgeInsets.only(left: ZohSizes.sm),
+                  child: Text(
+                    'Explore',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: ZohSizes.spaceBtwZoh,
+                      fontWeight: FontWeight.bold,
+                      color: dark ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
                 const SizedBox(height: ZohSizes.sm),
@@ -211,14 +270,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TrendingViewAll()),
+                      MaterialPageRoute(
+                        builder: (context) => const TrendingViewAll(),
+                      ),
                     );
                   },
                 ),
 
-                TrendingNews(
-                  trendingShimmer: newsLoading,
-                  articles: articles,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: ZohSizes.sm),
+                  child: TrendingNews(trendingShimmer: newsLoading, articles: articles),
                 ),
               ],
             ),

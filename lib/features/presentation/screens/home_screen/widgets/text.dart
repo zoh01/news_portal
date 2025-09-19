@@ -16,31 +16,34 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: ZohSizes.spaceBtwZoh,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        TextButton(
-          onPressed: onTap,
-          child: Text(
-            'View All',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: ZohSizes.sm),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
             style: TextStyle(
-              color: ZohColors.primaryColor,
-              fontFamily: 'Inter',
+              fontFamily: 'Roboto',
+              fontSize: ZohSizes.spaceBtwZoh,
               fontWeight: FontWeight.bold,
-              fontSize: ZohSizes.iconXs,
+              color: Colors.black,
             ),
           ),
-        ),
-      ],
+          TextButton(
+            onPressed: onTap,
+            child: Text(
+              'View All',
+              style: TextStyle(
+                color: ZohColors.primaryColor,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+                fontSize: ZohSizes.iconXs,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

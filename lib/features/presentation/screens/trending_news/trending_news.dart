@@ -25,7 +25,7 @@ class TrendingNews extends StatelessWidget {
         : _buildNewsList(context);
   }
 
-  /// 🔹 Shimmer Skeleton Layout
+  /// Shimmer Skeleton Layout
   Widget _buildShimmerList(BuildContext context) {
     final shimmerCount = articles.isEmpty
         ? 10
@@ -42,8 +42,8 @@ class TrendingNews extends StatelessWidget {
             elevation: 5,
             borderRadius: BorderRadius.circular(15),
             child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
+              baseColor: Colors.white,
+              highlightColor: Colors.transparent,
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
@@ -64,7 +64,7 @@ class TrendingNews extends StatelessWidget {
                     ),
                     const SizedBox(width: ZohSizes.sm),
 
-                    // 🔘 Text placeholders
+                    // Text placeholders
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -79,7 +79,7 @@ class _TrendingViewAllState extends State<TrendingViewAll> {
                     padding: const EdgeInsets.only(
                       bottom: ZohSizes.spaceBtwSections * 3.2,
                     ),
-                    // 🔹 If still loading → show 5 shimmer placeholders
+                    // If still loading → show 5 shimmer placeholders
                     itemCount: loading ? 5 : articles.length,
                     itemBuilder: (BuildContext context, int index) {
                       if (loading) {

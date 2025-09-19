@@ -118,8 +118,8 @@ class ExploreNewsContainer extends StatelessWidget {
         elevation: 3,
         borderRadius: BorderRadius.circular(ZohSizes.md),
         child: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
+          baseColor: Colors.white,
+          highlightColor: Colors.transparent,
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
@@ -136,7 +136,7 @@ class ExploreNewsContainer extends StatelessWidget {
                     width: double.infinity,
                     height: ZohHelperFunction.screenHeight() * .3,
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.circular(ZohSizes.md),
                     ),
                   ),
@@ -146,7 +146,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   Container(
                     height: 16,
                     width: double.infinity,
-                    color: Colors.grey[300],
+                    color: Colors.transparent,
                   ),
                   const SizedBox(height: 8),
 
@@ -154,7 +154,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   Container(
                     height: 14,
                     width: ZohHelperFunction.screenWidth() * 0.6,
-                    color: Colors.grey[300],
+                    color: Colors.transparent,
                   ),
                   const SizedBox(height: 8),
 
@@ -162,7 +162,7 @@ class ExploreNewsContainer extends StatelessWidget {
                   Container(
                     height: 14,
                     width: ZohHelperFunction.screenWidth() * 0.4,
-                    color: Colors.grey[300],
+                    color: Colors.transparent,
                   ),
                 ],
               ),

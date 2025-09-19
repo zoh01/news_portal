@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:news_portal/features/data/slider_data.dart';
 import 'package:news_portal/features/domain/models/slider_model.dart';
 
@@ -21,8 +22,8 @@ class _SliderViewAllState extends State<SliderViewAll> {
 
   @override
   void initState() {
-    getSlider();
     super.initState();
+    getSlider();
   }
 
   getSlider() async {
@@ -34,7 +35,6 @@ class _SliderViewAllState extends State<SliderViewAll> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,55 +45,116 @@ class _SliderViewAllState extends State<SliderViewAll> {
           title: Text(
             "Hottest News",
             style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.bold,
-                fontSize: ZohSizes.spaceBtwZoh
+              color: Colors.white,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+              fontSize: ZohSizes.spaceBtwZoh,
             ),
           ),
           centerTitle: true,
           leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
+            onPressed: () => Get.back(),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
             color: Colors.white,
           ),
           automaticallyImplyLeading: false,
         ),
-        body: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(ZohSizes.md),
-              topLeft: Radius.circular(ZohSizes.md),
-            ),
+        body: loading
+            ? _buildShimmerList(context)
+            : ListView.builder(
+          physics: const ClampingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemCount: slider.length,
+          padding: EdgeInsets.only(
+            bottom: ZohSizes.spaceBtwSections * 3.2,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: ZohHelperFunction.screenHeight(),
-                  child: ListView.builder(
-                    physics: ClampingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: slider.length,
-                    padding: EdgeInsets.only(bottom: ZohSizes.spaceBtwSections*3.2),
-                    itemBuilder: (BuildContext context, int index) {
-                      return ExploreNewsContainer(
-                        image: slider[index].newsImage,
-                        title: slider[index].newsTitle,
-                        desc: slider[index].newsDesc,
-                        url: slider[index].newsUrl,
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+          itemBuilder: (BuildContext context, int index) {
+            return ExploreNewsContainer(
+              image: slider[index].newsImage,
+              title: slider[index].newsTitle,
+              desc: slider[index].newsDesc,
+              url: slider[index].newsUrl,
+            );
+          },
         ),
       ),
+    );
+  }
+
+  /// 🔹 Shimmer Skeleton that mimics ExploreNewsContainer
+  Widget _buildShimmerList(BuildContext context) {
+    return ListView.builder(
+      physics: const ClampingScrollPhysics(),
+      itemCount: 6, // Number of shimmer placeholders
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.only(
+            left: ZohSizes.md,
+            right: ZohSizes.md,
+            top: ZohSizes.md,
+          ),
+          child: Material(
+            elevation: 3,
+            borderRadius: BorderRadius.circular(ZohSizes.md),
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(ZohSizes.md),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(ZohSizes.md),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // 🔘 Image placeholder
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(ZohSizes.md),
+                        child: Container(
+                          width: double.infinity,
+                          height: ZohHelperFunction.screenHeight() * .3,
+                          color: Colors.grey[300],
+                        ),
+                      ),
+                      const SizedBox(height: ZohSizes.sm),
+
+                      // 🔘 Title placeholder
+                      Container(
+                        height: 18,
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                      ),
+                      const SizedBox(height: ZohSizes.xs),
+
+                      // 🔘 Description placeholders
+                      Container(
+                        height: 14,
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                      ),
+                      const SizedBox(height: 6),
+                      Container(
+                        height: 14,
+                        width: ZohHelperFunction.screenWidth() * 0.7,
+                        color: Colors.grey[300],
+                      ),
+                      const SizedBox(height: 6),
+                      Container(
+                        height: 14,
+                        width: ZohHelperFunction.screenWidth() * 0.5,
+                        color: Colors.grey[300],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
