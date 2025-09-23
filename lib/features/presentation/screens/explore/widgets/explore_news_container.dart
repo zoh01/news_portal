@@ -119,7 +119,7 @@ class ExploreNewsContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(ZohSizes.md),
         child: Shimmer.fromColors(
           baseColor: Colors.white,
-          highlightColor: Colors.transparent,
+          highlightColor: Colors.grey.shade500,
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(

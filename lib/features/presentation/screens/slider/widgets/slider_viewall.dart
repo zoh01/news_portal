@@ -81,7 +81,7 @@ class _SliderViewAllState extends State<SliderViewAll> {
     );
   }
 
-  /// 🔹 Shimmer Skeleton that mimics ExploreNewsContainer
+  /// Shimmer Skeleton that mimics ExploreNewsContainer
   Widget _buildShimmerList(BuildContext context) {
     return ListView.builder(
       physics: const ClampingScrollPhysics(),
@@ -97,8 +97,8 @@ class _SliderViewAllState extends State<SliderViewAll> {
             elevation: 3,
             borderRadius: BorderRadius.circular(ZohSizes.md),
             child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
+              baseColor: Colors.white,
+              highlightColor: Colors.grey.shade500,
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -110,42 +110,42 @@ class _SliderViewAllState extends State<SliderViewAll> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // 🔘 Image placeholder
+                      // Image placeholder
                       ClipRRect(
                         borderRadius: BorderRadius.circular(ZohSizes.md),
                         child: Container(
                           width: double.infinity,
                           height: ZohHelperFunction.screenHeight() * .3,
-                          color: Colors.grey[300],
+                          color: Colors.transparent,
                         ),
                       ),
                       const SizedBox(height: ZohSizes.sm),
 
-                      // 🔘 Title placeholder
+                      // Title placeholder
                       Container(
                         height: 18,
                         width: double.infinity,
-                        color: Colors.grey[300],
+                        color: Colors.transparent,
                       ),
                       const SizedBox(height: ZohSizes.xs),
 
-                      // 🔘 Description placeholders
+                      // Description placeholders
                       Container(
                         height: 14,
                         width: double.infinity,
-                        color: Colors.grey[300],
+                        color: Colors.transparent,
                       ),
                       const SizedBox(height: 6),
                       Container(
                         height: 14,
                         width: ZohHelperFunction.screenWidth() * 0.7,
-                        color: Colors.grey[300],
+                        color: Colors.transparent,
                       ),
                       const SizedBox(height: 6),
                       Container(
                         height: 14,
                         width: ZohHelperFunction.screenWidth() * 0.5,
-                        color: Colors.grey[300],
+                        color: Colors.transparent,
                       ),
                     ],
                   ),

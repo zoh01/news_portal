@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_portal/features/data/data.dart';
 import 'package:news_portal/features/data/news.dart';
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: dark ? Colors.black : Colors.white,
         body: Padding(
-          padding: const EdgeInsets.only(bottom: ZohSizes.sm,),
+          padding: const EdgeInsets.only(bottom: ZohSizes.sm),
           child: RefreshIndicator(
             onRefresh: () async {
               await getNews();
@@ -138,9 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const SliderViewAll(),
-                        ),
+                        CupertinoPageRoute(builder: (ctx) => SliderViewAll()),
                       );
                     },
                   ),
@@ -268,18 +267,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextWidget(
                   title: 'Trending News',
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TrendingViewAll(),
-                      ),
-                    );
+                    Navigator.push(context, CupertinoPageRoute(builder: (zoh) => TrendingViewAll()));
                   },
                 ),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: ZohSizes.sm),
-                  child: TrendingNews(trendingShimmer: newsLoading, articles: articles),
+                  child: TrendingNews(
+                    trendingShimmer: newsLoading,
+                    articles: articles,
+                  ),
                 ),
               ],
             ),

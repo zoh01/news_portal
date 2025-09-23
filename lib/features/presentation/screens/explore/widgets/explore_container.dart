@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_portal/features/presentation/screens/explore/explore.dart';
 import 'package:news_portal/utils/device_utils/device_utilities.dart';
@@ -15,7 +16,7 @@ class ExploreContainer extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Explore(name: categoryName)),
+          CupertinoPageRoute(builder: (zoh) => Explore(name: categoryName)),
         );
       },
       child: Container(
@@ -33,7 +34,12 @@ class ExploreContainer extends StatelessWidget {
             ),
             Text(
               categoryName,
-              style: TextStyle(fontSize: ZohSizes.md, fontFamily: 'Inter', color: Colors.black, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: ZohSizes.md,
+                fontFamily: 'Inter',
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

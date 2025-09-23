@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:news_portal/features/presentation/screens/home_screen/home_screen.dart';
 import 'package:news_portal/utils/constants/colors.dart';
@@ -21,68 +22,52 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 8)).then((zoh) {
-      Navigator.of(
+      Navigator.pushReplacement(
         context,
-      ).pushReplacement(CupertinoPageRoute(builder: (ctx) => HomeScreen()));
+        CupertinoPageRoute(builder: (zoh) => HomeScreen()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(ZohImages.splashImage),
-                fit: BoxFit.cover,
+      body: Padding(
+        padding: const EdgeInsets.all(ZohSizes.md),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BounceIn(
+              duration: Duration(milliseconds: 5000),
+              child: Image(
+                image: AssetImage(ZohImages.reportNews),
+                height: ZohHelperFunction.screenHeight() * .4,
+                alignment: Alignment.center,
               ),
             ),
-          ),
-          Container(color: ZohColors.darkColor.withOpacity(0.7)),
-          DelayedDisplay(
-            delay: Duration(milliseconds: 3000),
-            fadingDuration: const Duration(milliseconds: 3000),
-            slidingCurve: Curves.easeIn,
-            slidingBeginOffset: Offset.fromDirection(-.5, 1.2),
-            child: Positioned(
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Image(
-                  image: AssetImage(ZohImages.reportNews),
-                  height: ZohHelperFunction.screenHeight() * .4,
+
+            SizedBox(height: ZohSizes.spaceBtwSections),
+
+            SlideInRight(
+              duration: Duration(milliseconds: 3000),
+              child: SizedBox(
+                child: DefaultTextStyle(
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    color: ZohColors.darkColor,
+                    fontSize: ZohSizes.spaceBtwZoh,
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(ZohTextString.splashText),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: ZohSizes.spaceBtwSections,
-            child: SizedBox(
-              child: DefaultTextStyle(
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: ZohColors.white,
-                  fontFamily: 'Poppins',
-                  fontSize: ZohSizes.md,
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText(
-                      textAlign: TextAlign.center,
-                      ZohTextString.splashText,
-                      speed: Durations.short1,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
