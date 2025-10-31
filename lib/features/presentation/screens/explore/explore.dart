@@ -6,7 +6,6 @@ import 'package:news_portal/features/presentation/screens/explore/widgets/explor
 import 'package:news_portal/features/presentation/screens/explore/widgets/explore_shimmer.dart';
 import 'package:news_portal/utils/constants/colors.dart';
 import 'package:news_portal/utils/constants/sizes.dart';
-import 'package:news_portal/utils/helper_function/helper_functions.dart';
 
 class Explore extends StatefulWidget {
   final String name;
