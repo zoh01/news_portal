@@ -115,3 +115,57 @@ The app follows a **Clean Architecture pattern**, separating code into three mai
 
 ### Entertainment Screen
 ![Technology_Screen](https://github.com/zoh01/news_portal/blob/07a2e84a3900a58852bfe892c78dc65c570f0fc0/entertainment_screen.jpeg)
+
+---
+
+## 📂 Project Structure
+1. Clean Architecture Implementation
+   ```bash
+   lib/
+    ├── features/
+    │     ├── data/             # Handles API fetching, slider data, news data
+    │     ├── domain/           # Models (ArticleModels, SliderModel, CategoryModel, etc.)
+    │     ├── presentation/     # UI screens & widgets (home, slider, trending, explore, news view, etc.)
+    ├── utils/                  # Constants (colors, sizes), helper functions, device utilities
+    ├── main.dart               # Entry point of the app
+   pubspec.yaml                 # Flutter dependencies and assets
+   README.md                    # Project documentation
+This separation ensures maintainability and easier scalability as the app grows.
+
+---
+
+## 🛠️ Getting Started
+### Prerequisites
+- Flutter SDK installed
+- A valid news API / backend service to fetch news data
+- Internet connection (for fetching news & loading full articles)
+
+### Run locally
+1. Clone Project to you IDE
+   ```bash
+   # Clone the repository
+   git clone https://github.com/zoh01/news_portal.git
+
+   # Enter the project directory
+   cd news_portal
+
+   # Get dependencies
+   flutter pub get
+
+   # Run the app (on device or emulator)
+   flutter run
+⚙️ If you are using an API key or environment variables, make sure to configure them before running.
+
+--- 
+
+## Future Enhancement & Ideas
+Here are some potential upgrades to make this project even more powerful:
+- **🔖 Bookmark / Save Articles:** allow users to save interesting news for later reading.
+- **🌙 Manual Theme Toggle:** let users switch between light and dark mode.
+- **🔔 Push Notifications:** notify users of breaking news or trending stories.
+- **📡 Offline Mode / Caching:** cache articles for offline reading (especially useful for low-data users).
+- **🔍 Search Functionality:** search by keywords, authors, or categories.
+- **🌍 Multi-language Support:** enable news in different languages.
+- **📐 Responsive Web Version:** extend support beyond mobile to web browsers.
+- **🧪 Testing:** add unit tests / widget tests for reliability and maintenance.
+
