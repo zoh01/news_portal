@@ -144,10 +144,10 @@ This separation ensures maintainability and easier scalability as the app grows.
 **STEPS TO RUN**
 1. Clone the repository:
    ```bash
-   git clone <https://github.com/zoh01/cattle_health>
+   git clone https://github.com/zoh01/news_portal.git
 2. Enter project folder
    ```bash
-   cd cattle-health-monitoring  
+   cd news_portal
 3. Get dependencies
    ```bash
    flutter pub get
@@ -169,3 +169,23 @@ Here are some potential upgrades to make this project even more powerful:
 - **📐 Responsive Web Version:** extend support beyond mobile to web browsers.
 - **🧪 Testing:** add unit tests / widget tests for reliability and maintenance.
 
+---
+
+## 👤 **Author / Contact** section  
+
+## 👤 Author
+**Adebayo Wariz**  
+
+## 📧 Contact
+Whatsapp: +234 702 513 6608
+
+Email: adebayozoh@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/adebayo-wariz-a8ab9a310/
+
+GitHub: [https://github.com/zoh01](https://github.com/zoh01)
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
