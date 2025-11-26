@@ -141,18 +141,18 @@ This separation ensures maintainability and easier scalability as the app grows.
 - Internet connection (for fetching news & loading full articles)
 
 ### Run locally
-1. Clone Project to you IDE
+**STEPS TO RUN**
+1. Clone the repository:
    ```bash
-   # Clone the repository
-   git clone https://github.com/zoh01/news_portal.git
-
-   # Enter the project directory
-   cd news_portal
-
-   # Get dependencies
+   git clone <https://github.com/zoh01/cattle_health>
+2. Enter project folder
+   ```bash
+   cd cattle-health-monitoring  
+3. Get dependencies
+   ```bash
    flutter pub get
-
-   # Run the app (on device or emulator)
+4. Run the app
+   ```bash
    flutter run
 ⚙️ If you are using an API key or environment variables, make sure to configure them before running.
 
