@@ -60,7 +60,7 @@ class _NewsViewState extends State<NewsView> {
       ),
       body: Stack(
         children: [
-          /// 🌐 WebView
+          /// WebView
           InAppWebView(
             initialUrlRequest: URLRequest(url: WebUri(widget.blogUrl)),
             onWebViewCreated: (controller) {
@@ -78,7 +78,7 @@ class _NewsViewState extends State<NewsView> {
             ),
           ),
 
-          /// ✨ Article-style Shimmer Loader
+          /// Article-style Shimmer Loader
           if (isLoading)
             Container(
               color: Colors.white,
