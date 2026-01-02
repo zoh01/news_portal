@@ -151,8 +151,8 @@ This separation ensures maintainability and easier scalability as the app grows.
   
        flutter pub get
 4. Run the app
-   ```bash
-   flutter run
+  
+       flutter run
 ⚙️ If you are using an API key or environment variables, make sure to configure them before running.
 
 --- 
