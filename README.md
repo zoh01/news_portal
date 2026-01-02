@@ -173,7 +173,7 @@ Here are some potential upgrades to make this project even more powerful:
 ## 👤 **Author / Contact** section  
 
 ## 👤 Author
-**Adebayo Wariz**  
+### Adebayo Wariz  
 
 ## 📧 Contact
 Whatsapp: +234 702 513 6608
