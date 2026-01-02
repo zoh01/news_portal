@@ -119,17 +119,16 @@ The app follows a **Clean Architecture pattern**, separating code into three mai
 ---
 
 ## 📂 Project Structure
-1. Clean Architecture Implementation
-   ```bash
-   lib/
-    ├── features/
-    │     ├── data/             # Handles API fetching, slider data, news data
-    │     ├── domain/           # Models (ArticleModels, SliderModel, CategoryModel, etc.)
-    │     ├── presentation/     # UI screens & widgets (home, slider, trending, explore, news view, etc.)
-    ├── utils/                  # Constants (colors, sizes), helper functions, device utilities
-    ├── main.dart               # Entry point of the app
-   pubspec.yaml                 # Flutter dependencies and assets
-   README.md                    # Project documentation
+  
+    lib/
+     ├── features/
+     │     ├── data/             # Handles API fetching, slider data, news data
+     │     ├── domain/           # Models (ArticleModels, SliderModel, CategoryModel, etc.)
+     │     ├── presentation/     # UI screens & widgets (home, slider, trending, explore, news view, etc.)
+     ├── utils/                  # Constants (colors, sizes), helper functions, device utilities
+     ├── main.dart               # Entry point of the app
+    pubspec.yaml                 # Flutter dependencies and assets
+    README.md                    # Project documentation
 This separation ensures maintainability and easier scalability as the app grows.
 
 ---
