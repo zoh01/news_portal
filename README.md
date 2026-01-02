@@ -145,8 +145,8 @@ This separation ensures maintainability and easier scalability as the app grows.
 
        git clone https://github.com/zoh01/news_portal.git
 2. Enter project folder
-   ```bash
-   cd news_portal
+   
+       cd news_portal
 3. Get dependencies
    ```bash
    flutter pub get
