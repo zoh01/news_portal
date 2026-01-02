@@ -148,8 +148,8 @@ This separation ensures maintainability and easier scalability as the app grows.
    
        cd news_portal
 3. Get dependencies
-   ```bash
-   flutter pub get
+  
+       flutter pub get
 4. Run the app
    ```bash
    flutter run
