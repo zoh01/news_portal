@@ -142,8 +142,8 @@ This separation ensures maintainability and easier scalability as the app grows.
 ### Run locally
 **STEPS TO RUN**
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/zoh01/news_portal.git
+
+       git clone https://github.com/zoh01/news_portal.git
 2. Enter project folder
    ```bash
    cd news_portal
