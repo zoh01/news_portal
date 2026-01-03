@@ -170,8 +170,6 @@ Here are some potential upgrades to make this project even more powerful:
 
 ---
 
-## 👤 **Author / Contact** section  
-
 ## 👤 Author
 ### Adebayo Wariz  
 
@@ -196,3 +194,5 @@ This project is licensed under the MIT License.
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction...
+
+
